@@ -1,0 +1,16 @@
+#+STARTUP: showeverything
+
+* Books from Goodreads
+
+** Fiction and Non-Fiction
+{% for book in books|sort(attribute='title') %}
+*** {{ book.title }}{% if not "date_read" in book %}              :unread:{% endif %}
+:PROPERTIES:
+:Author: {{ book.author }}{% if "date_added" in book %}
+:Added: {{ book.date_added }}{% endif %}{% if "date_read" in book %}
+:Read: {{ book.date_read }}{% endif %}{% if "isbn13" in book and book.isbn13|length > 0 %}
+:ISBN13: {{ book.isbn13 }}{% endif %}{% if "rating" in book %}
+:Rating: {{ book.rating }}{% endif %}
+:Url: {{ book.url }}
+:END:
+{% endfor %}
